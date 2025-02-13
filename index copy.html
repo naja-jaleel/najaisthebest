@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: "Pinyon Script", serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 2rem;
+            text-align: center;
+            background: url('background.jpg') no-repeat center center/cover;
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        h1{
+            font-family: "Pinyon Script", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        button {
+            font-family: Calibri, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            
+        }
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 1rem;
+        }
+        button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            font-size: 1rem;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .tiny-button {
+            font-size: 10px;
+            padding: 5px 8px;
+            background-color: gray;
+        }
+        .zoom-in {
+            animation: zoomIn 1s ease-in-out;
+        }
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(2);
+                opacity: 2;
+            }
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgMusic" autoplay loop>
+        <source src="song.mp3" type="audio/mp3">
+    </audio>
+    
+    <div id="page1">
+        <h1>hi mr ck!!!!!</h1>
+        <button onclick="nextPage()">hi</button>
+    </div>
+    
+    <div id="page2" class="hidden">
+        <h1>I wanna ask you something seriously!!!!</h1>
+        <p>You have to promise me that you won't lie</p>
+        <button onclick="yesAnswer()">Yes</button>
+        <button onclick="noAnswer()">No</button>
+    </div>
+    
+    <div id="page3" class="hidden">
+        <h1>Take this time to think about lucky you are to have me in your life. </h1>
+        <img id="gifImage" src="me.jpg" alt="Opening letter animation">
+    </div>
+    
+    <div id="page4" class="hidden">
+        <h1>💔</h1>
+        <p>I knew you were a freaking liar.</p>
+    </div>
+
+    <div id="page5" class="hidden zoom-in">
+        <h1>Who do you love the most in the entire world? 🖤</h1>
+        <button onclick="yesValentine()">Naja Jalel duh!!!</button>
+        <button class="tiny-button" onclick="noValentine()">Anyone Else</button>
+    </div>
+
+    <script>
+        function nextPage() {
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.remove('hidden');
+        }
+
+        function yesAnswer() {
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('page3').classList.remove('hidden');
+
+            // After 2 seconds, show page5
+            setTimeout(() => {
+                document.getElementById('page3').classList.add('hidden');
+                document.getElementById('page5').classList.remove('hidden');
+            }, 2000);
+        }
+
+        function noAnswer() {
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('page4').classList.remove('hidden');
+        }
+
+        function yesValentine() {
+            // Fireworks animation
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }, i * 500);
+            }
+            alert("I thought so too. How can you not love me? So you better send me gym snaps.");
+        }
+
+        function noValentine() {
+            alert("You need to rethink your life choices my love.");
+        }
+    </script>
+</body>
+</html>
+
